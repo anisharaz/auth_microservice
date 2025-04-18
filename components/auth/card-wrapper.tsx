@@ -6,9 +6,9 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
-import { Header } from "./header";
 import { Social } from "./social";
-import { BackButton } from "./back-button";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 interface CardWrapperProps {
   children: React.ReactNode;
@@ -17,7 +17,6 @@ interface CardWrapperProps {
   backButtonLabel: string;
   backButtonHref: string;
   showSocial?: boolean;
-  auth?: boolean;
 }
 
 export const CardWrapper = ({
@@ -27,20 +26,16 @@ export const CardWrapper = ({
   backButtonLabel,
   backButtonHref,
   showSocial,
-  auth,
 }: CardWrapperProps) => {
   return (
-    <Card
-      className={
-        auth ? "border-none shadow-none px-6 w-[580px]" : "w-[420px] shadow-md"
-      }
-    >
+    <Card className={"border-none shadow-none px-6 w-[580px]"}>
       <CardHeader>
-        <Header
-          title={headerTitle}
-          label={headerLabel}
-          {...(auth ? { auth } : {})}
-        />
+        <div className={"w-full flex flex-col gap-y-3 text-balance"}>
+          <h1 className="text-4xl font-semibold">{headerTitle}</h1>
+          <p className="text-muted-foreground text-md text-balance">
+            {headerLabel}
+          </p>
+        </div>
       </CardHeader>
       <CardContent>{children}</CardContent>
       {showSocial && (
@@ -49,7 +44,14 @@ export const CardWrapper = ({
         </CardFooter>
       )}
       <CardFooter className="flex justify-center">
-        <BackButton label={backButtonLabel} href={backButtonHref} />
+        <Button
+          variant="link"
+          className="font-normal text-sm"
+          size="sm"
+          asChild
+        >
+          <Link href={backButtonHref}>{backButtonLabel}</Link>
+        </Button>
       </CardFooter>
     </Card>
   );

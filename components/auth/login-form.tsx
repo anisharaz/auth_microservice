@@ -1,5 +1,4 @@
 "use client";
-
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -17,11 +16,10 @@ import {
 import { Button } from "@/components/ui/button";
 import { Social } from "./social";
 import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
-import { Header } from "./header";
-import { BackButton } from "./back-button";
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
+import Link from "next/link";
 
 export const LoginForm = () => {
   const searchParams = useSearchParams();
@@ -55,7 +53,12 @@ export const LoginForm = () => {
   return (
     <Card className={"border-none shadow-none px-6 w-[580px]"}>
       <CardHeader>
-        <Header title={"Welcome back"} label={"Please enter your details"} />
+        <div className={"w-full flex flex-col gap-y-3 text-balance"}>
+          <h1 className="text-4xl font-semibold">Welcome back</h1>
+          <p className="text-muted-foreground text-md text-balance">
+            Please enter your details
+          </p>
+        </div>
       </CardHeader>
       <CardContent>
         <Form {...form}>
@@ -125,10 +128,14 @@ export const LoginForm = () => {
         <Social />
       </CardFooter>
       <CardFooter className="flex justify-center">
-        <BackButton
-          label={"Don't have an account? Sign up"}
-          href={"/auth/signup"}
-        />
+        <Button
+          variant="link"
+          className="font-normal text-sm"
+          size="sm"
+          asChild
+        >
+          <Link href={"/auth/signup"}>Don't have an account? Sign up</Link>
+        </Button>
       </CardFooter>
     </Card>
   );

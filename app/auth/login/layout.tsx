@@ -1,6 +1,5 @@
 import { auth } from "@/auth";
 import LogoutButton from "@/components/auth/logout-button";
-// import Image from "next/image";
 export default async function SignInPage({
   children,
 }: {
@@ -28,17 +27,8 @@ export default async function SignInPage({
   }
   return (
     <div className="flex justify-between">
-      <div className="absolute">Logo</div>
-      <div className="flex flex-col justify-center items-center w-1/2 h-screen">
+      <div className="flex flex-col justify-center items-center w-full h-screen">
         {children}
-      </div>
-      <div className="w-1/2 relative h-screen">
-        {/* <Image
-          src="https://r2.aaraz.me/digitallife/login.jpeg"
-          alt="login-image"
-          fill
-          className="object-cover"
-        /> */}
       </div>
     </div>
   );

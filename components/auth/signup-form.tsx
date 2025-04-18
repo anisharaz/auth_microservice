@@ -14,12 +14,11 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
-import { Header } from "./header";
 import { Social } from "./social";
-import { BackButton } from "./back-button";
 import { emailSignup } from "@/app/actions/email-signup";
 import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
+import Link from "next/link";
 
 export const SignupForm = () => {
   const router = useRouter();
@@ -44,12 +43,15 @@ export const SignupForm = () => {
   return (
     <Card className={"border-none shadow-none px-6 w-[580px]"}>
       <CardHeader>
-        <Header
-          title={"Ready to start your exciting journey ?"}
-          label={
-            "Signup to our website and start leading through your meta life today!"
-          }
-        />
+        <div className={"w-full flex flex-col gap-y-3 text-balance"}>
+          <h1 className="text-4xl font-semibold">
+            Ready to start your exciting journey ?
+          </h1>
+          <p className="text-muted-foreground text-md text-balance">
+            Signup to our website and start leading through your meta life
+            today!
+          </p>
+        </div>
       </CardHeader>
       <CardContent>
         <Form {...form}>
@@ -126,10 +128,14 @@ export const SignupForm = () => {
       </CardFooter>
 
       <CardFooter className="flex justify-center">
-        <BackButton
-          label={"Already have an account? Login"}
-          href={"/auth/login"}
-        />
+        <Button
+          variant="link"
+          className="font-normal text-sm"
+          size="sm"
+          asChild
+        >
+          <Link href={"/auth/login"}>Already have an account? Login</Link>
+        </Button>
       </CardFooter>
     </Card>
   );

@@ -1,6 +1,7 @@
 import { permanentRedirect } from "next/navigation";
-function Home() {
+
+function AuthPage() {
   permanentRedirect("/auth/login");
 }
 
-export default Home;
+export default AuthPage;
