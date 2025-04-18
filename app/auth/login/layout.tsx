@@ -1,6 +1,6 @@
 import { auth } from "@/auth";
 import LogoutButton from "@/components/auth/logout-button";
-import Image from "next/image";
+// import Image from "next/image";
 export default async function SignInPage({
   children,
 }: {

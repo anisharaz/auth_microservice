@@ -1,13 +1,19 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
+import { Suspense } from "react";
 
-export default function ErrorPage() {
+function ErrorMessage() {
   const searchParams = useSearchParams();
   const error = searchParams.get("error");
+  return (
+    <p className="mb-6">{error || "Something went wrong. Please try again."}</p>
+  );
+}
+
+export default function ErrorPage() {
   const router = useRouter();
 
   return (
@@ -16,9 +22,9 @@ export default function ErrorPage() {
         <h1 className="text-2xl font-bold text-red-600 mb-4">
           An Error Occurred
         </h1>
-        <p className="mb-6">
-          {error || "Something went wrong. Please try again."}
-        </p>
+        <Suspense>
+          <ErrorMessage />
+        </Suspense>
         <div className="flex gap-4 justify-center">
           <Button onClick={() => router.push("/auth/login")}>
             Login again
