@@ -12,6 +12,9 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 ENV NEXT_TELEMETRY_DISABLED=1
+ARG CORS_ALLOWED_ORIGINS
+RUN [ -n "$CORS_ALLOWED_ORIGINS" ] || (echo "Missing required CORS_ALLOWED_ORIGINS args" && exit 1)
+ENV CORS_ALLOWED_ORIGINS={CORS_ALLOWED_ORIGINS}
 RUN npx prisma generate && npm run build
 
 FROM base AS runner

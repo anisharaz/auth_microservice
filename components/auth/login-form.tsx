@@ -134,7 +134,7 @@ export const LoginForm = () => {
           size="sm"
           asChild
         >
-          <Link href={"/auth/signup"}>Don't have an account? Sign up</Link>
+          <Link href={"/auth/signup"}>Don&apos;t have an account? Sign up</Link>
         </Button>
       </CardFooter>
     </Card>
