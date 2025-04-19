@@ -3,7 +3,6 @@ import authConfig from "./auth.config";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { prisma } from "./lib/db";
 import Google from "next-auth/providers/google";
-import Resend from "next-auth/providers/resend";
 import Credentials from "next-auth/providers/credentials";
 import { loginSchema } from "./schemas";
 import bcrypt from "bcryptjs";
@@ -14,9 +13,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   ...authConfig,
   providers: [
     Google,
-    Resend({
-      from: process.env.RESEND_FROM_EMAIL,
-    }),
     Credentials({
       authorize: async (credentials, req) => {
         try {

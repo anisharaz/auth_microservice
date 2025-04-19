@@ -49,7 +49,7 @@ export default function VerifyOtp() {
       alert("email verified , proceed to login");
       router.push(`/auth/login`);
     } else {
-      setLoading(true);
+      setLoading(false);
       alert(res.message);
     }
   }

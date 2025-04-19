@@ -49,7 +49,7 @@ export async function emailSignup({
         }
         try {
           await sendEmailOtp({
-            name: existingUser.name!,
+            name: existingUser.name as string,
             email: email,
             otp: otp,
           });
@@ -144,9 +144,7 @@ export async function verifyOtp({
         token: otp,
       },
     });
-    if (!verificationToken) {
-      throw new Error("Invalid OTP");
-    }
+    if (!verificationToken) throw new Error("Invalid OTP");
     if (new Date(verificationToken.expires).getTime() < Date.now()) {
       throw new Error("OTP has expired, signup again");
     }

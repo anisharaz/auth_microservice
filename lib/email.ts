@@ -20,7 +20,7 @@ export async function sendEmailOtp({
 }) {
   await EmailTransport.sendMail({
     to: email,
-    from: "no-reply@mail.blockx3.xyz",
+    from: process.env.RESEND_FROM_EMAIL,
     subject: "Verify your email",
     text: `Your OTP is ${otp}. Please verify your email within 24 hours.`,
     html: `
@@ -34,7 +34,7 @@ export async function sendEmailOtp({
         <p>Alternatively, you can click the link below to verify your email:</p>
         <a href="${process.env.NEXTAUTH_URL}/auth/signup/verify-email?email=${email}" style="display: inline-block; padding: 10px 20px; background-color: #4CAF50; color: #fff; text-decoration: none; border-radius: 5px;">Verify Email</a>
         <p style="margin-top: 20px;">Please note: This OTP is valid for 24 hours. If you did not sign up for this account, you can safely ignore this email.</p>
-        <p>Best regards,<br>The BlockX3 Team</p>
+        <p>Best regards,<br>The xyz Team</p>
       </div>
     `,
   });
